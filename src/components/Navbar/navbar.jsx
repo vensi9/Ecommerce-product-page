@@ -4,14 +4,18 @@ import Image from "../../images/image-avatar.png"
 import Menu from "../../images/icons/icon-menu.svg"
 import CloseIcon from "../../images/icons/icon-close.svg"
 import Cart from "../../images/icons/icon-cart.svg"
+import { Carts } from '../Cart/cart';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); 
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen); // Toggle cart visibility
+  };
   const users = [
     { links: "Collection" },
     { links: "Men" },
@@ -72,17 +76,19 @@ const Navbar = () => {
               <button className="sm:mr-6 mr-6 sm:w-auto w-4 ">
                 <img src={Cart} alt='menu' />
               </button>
-              <div>
+              <button onClick={toggleCart} className=' transition duration-500 ease-in' >
                 <img
+                 onClick={toggleCart} 
                   src={Image}
                   alt="Profile"
                   className="w-5 h-5 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-cover cursor-pointer"
                 />
-              </div>
+              </button>
             </div>
           </div>
         </div>
       </header>
+      {isCartOpen && <Carts />}
     </>
   );
 };
