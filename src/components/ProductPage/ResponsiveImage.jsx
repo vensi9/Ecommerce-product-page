@@ -14,12 +14,11 @@ function SampleNextArrow(props) {
     const { onClick } = props;
     return (
         <div className=" ">
-
         <img
         src={ArrowLeftIcon}
         onClick={onClick}
         alt="left"
-        // className="absolute z-10 transform translate-x-[-13px] translate-y-[-144px]"
+        className="absolute z-10 transform translate-x-[-10px] translate-y-[-195px] left-10 py-[14px] px-[16px] rounded-full bg-white"
         />
         </div>
     );
@@ -34,7 +33,7 @@ function SamplePrevArrow(props) {
         src={ArrowRightIcon}
             onClick={onClick}
             alt="left"
-            className="absolute z-10 "
+            className="absolute z-10 transform translate-x-10 translate-y-[145px] right-16 py-[13px] px-[15px] rounded-full bg-white"
         />
 </div>
     );
