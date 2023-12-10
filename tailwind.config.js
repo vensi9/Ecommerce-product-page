@@ -36,8 +36,14 @@ module.exports = {
         '16':'16px',
         '18':'18px',
         '20':'20px',
+      },
+      filter: {
+        'drop-shadow-orange': 'drop-shadow(0 5px 8px #ff8d1a70)',
+        'drop-shadow-white': 'drop-shadow(0 5px 8px #b6bcc833)',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-filters'),
+  ],
 }

@@ -10,7 +10,7 @@ export const Carts = () => {
   }
 
   return (
-    <div className=' z-20 container mt-2  sm:mt-0  absolute sm:right-12 top-18 lg:top-28 sm:w-96 bg-white shadow-lg  shadow-grayish-blue'>
+    <div className='w-[95vw] sm:w-96 rounded-lg left-1/2 sm:left-[70%] xl:left-[80%] 2xl:left-[75%] transform -translate-x-1/2 z-20 container mt-2  sm:mt-0  absolute top-18 lg:top-28  bg-white shadow-lg  shadow-grayish-blue'>
       <div className='mx-2 sm:mx-auto '>
         <div className='flex items-center h-16 border-b-2 '>
           <h1 className='pl-8 text-black font-700'>Cart</h1>
@@ -43,7 +43,7 @@ export const Carts = () => {
                   />
                 </div>
               </div>
-              <button className=' font-700 text-white px-28 py-4 bg-orange rounded-xl' type='submit'>Checkout</button>
+              <button className=' font-700 text-white px-28 py-4 bg-orange hover:opacity-50 rounded-xl' type='submit'>Checkout</button>
             </div>
           </div>
         ) : (

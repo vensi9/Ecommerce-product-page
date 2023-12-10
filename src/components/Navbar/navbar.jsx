@@ -8,7 +8,8 @@ import { Carts } from '../Cart/cart';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false); 
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen); // Toggle cart visibility
   };
+
   const users = [
     { links: "Collection" },
     { links: "Men" },
@@ -23,6 +25,14 @@ const Navbar = () => {
     { links: "About" },
     { links: "Contact" },
   ];
+
+  const handleImageClick = (imageSrc) => {
+    if (selectedImage === imageSrc) {
+      setSelectedImage(null); // Deselect if already selected
+    } else {
+      setSelectedImage(imageSrc); // Select the clicked image
+    }
+  };
 
   return (
     <>
@@ -40,13 +50,14 @@ const Navbar = () => {
                 </button>
               </div>
               <div className="flex items-center ">
-                <img src={Logo} alt="Logo" className='sm:w-auto w-24 mr-6' />
+                <img src={Logo} alt="Logo" className='sm:w-auto w-24 mr-3 xl:mr-6' />
               </div>
               {users.map((user) => {
                 return <ul className="hidden sm:flex text-14 lg:text-16 font-400 text-dark-grayish-blue">
                   <li className='ml-5 md:ml-8 lg:ml-10 '>
                     <a href="#" className="hover:text-very-dark-blue hover:border-orange hover:border-b-[3px] sm:hover:pb-[25px] lg:hover:pb-[43px]">{user.links}</a>
-                  </li></ul>
+                  </li>
+                </ul>
               })}
 
               {isMenuOpen && (
@@ -78,10 +89,12 @@ const Navbar = () => {
               </button>
               <button onClick={toggleCart} className=' transition duration-500 ease-in' >
                 <img
-                 onClick={toggleCart} 
                   src={Image}
                   alt="Profile"
-                  className="w-5 h-5 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-cover cursor-pointer"
+                  onClick={handleImageClick}
+                  className={`w-5 h-5 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-cover cursor-pointer
+                  ${selectedImage ? 'border-orange border-2' : ''}
+                  `}
                 />
               </button>
             </div>

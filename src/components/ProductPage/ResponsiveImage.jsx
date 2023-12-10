@@ -6,40 +6,36 @@ import Product1 from "../../images/image-product-1.jpg"
 import Product2 from "../../images/image-product-2.jpg"
 import Product3 from "../../images/image-product-3.jpg"
 import Product4 from "../../images/image-product-4.jpg"
-import ArrowLeftIcon from '../../images/icons/icon-previous.svg'; // Import your left arrow icon
-import ArrowRightIcon from '../../images/icons/icon-next.svg'; // Import your right arrow icon
-
+import ArrowLeftIcon from '../../images/icons/icon-previous.svg';  
+import ArrowRightIcon from '../../images/icons/icon-next.svg'; 
 
 function SampleNextArrow(props) {
     const { onClick } = props;
     return (
-        <div className=" ">
-        <img
-        src={ArrowLeftIcon}
-        onClick={onClick}
-        alt="left"
-        className="absolute z-10 transform translate-x-[-10px] translate-y-[-195px] left-10 py-[14px] px-[16px] rounded-full bg-white"
-        />
+        <div>
+            <img
+                src={ArrowLeftIcon}
+                onClick={onClick}
+                alt="left"
+                className="absolute z-10 transform translate-x-[-10px] translate-y-[-150px] left-7 py-[6px] px-[9px] rounded-full bg-white"
+            />
         </div>
     );
 }
 
 function SamplePrevArrow(props) {
-    const {onClick } = props;
+    const { onClick } = props;
     return (
-        <div className="">
-
-        <img
-        src={ArrowRightIcon}
-            onClick={onClick}
-            alt="left"
-            className="absolute z-10 transform translate-x-10 translate-y-[145px] right-16 py-[13px] px-[15px] rounded-full bg-white"
-        />
-</div>
+        <div>
+            <img
+                src={ArrowRightIcon}
+                onClick={onClick}
+                alt="left"
+                className="absolute z-10 transform translate-x-10 translate-y-[105px] right-14 py-[6px] px-[9px] rounded-full bg-white"
+            />
+        </div>
     );
 }
-
-
 
 const ImageSlider = () => {
     const images = [{
@@ -85,4 +81,5 @@ const ImageSlider = () => {
         </>
     )
 }
+
 export default ImageSlider;
