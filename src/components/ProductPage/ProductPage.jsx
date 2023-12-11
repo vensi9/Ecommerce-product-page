@@ -25,7 +25,7 @@ export const ProductPage = () => {
           <span className=' sm:mx-10'>0</span>
           <img src={Minus} alt="minus" className='hover:opacity-50 ' />
         </button>
-        <button type="submit" className='hover:opacity-50 filter-drop-shadow-orange md:text-14 lg:text-16  text-14 md:ml-4 mt-4 md:mt-0 flex justify-center items-center bg-orange font-700 text-white px-16 md:px-14 lg:px-16 py-3 md:py-4 rounded-lg'>
+        <button type="submit" className='hover:opacity-50 filter-drop-shadow-orange md:text-14 lg:text-16  text-14 md:ml-4 mt-4 md:mt-0 flex justify-center items-center bg-orange font-700 text-white px-16 md:px-12 lg:px-16 py-3 md:py-4 rounded-lg'>
           <img src={CartIcon} alt="cart" className='w-[1.5rem] sm:w:auto mr-2 ilter brightness-0 invert' />
           Add to Cart</button>
       </div>
