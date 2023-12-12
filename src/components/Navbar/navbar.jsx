@@ -4,18 +4,21 @@ import Image from "../../images/image-avatar.png"
 import Menu from "../../images/icons/icon-menu.svg"
 import CloseIcon from "../../images/icons/icon-close.svg"
 import Cart from "../../images/icons/icon-cart.svg"
+import ImageSlider from '../ProductPage/ResponsiveImage';
 import { Carts } from '../Cart/cart';
+import { ProductPage } from '../ProductPage/ProductPage';
+import { ProductImage } from '../ProductPage/ProductImage';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const toggleCart = () => {
-    setIsCartOpen(!isCartOpen); // Toggle cart visibility
+    setIsCartOpen(!isCartOpen);
   };
 
   const users = [
@@ -25,14 +28,6 @@ const Navbar = () => {
     { links: "About" },
     { links: "Contact" },
   ];
-
-  const handleImageClick = (imageSrc) => {
-    if (selectedImage === imageSrc) {
-      setSelectedImage(null); // Deselect if already selected
-    } else {
-      setSelectedImage(imageSrc); // Select the clicked image
-    }
-  };
 
   return (
     <>
@@ -84,24 +79,32 @@ const Navbar = () => {
 
             {/* Right side */}
             <div className="flex items-center font-larger">
-              <button className="sm:mr-6 mr-6 sm:w-auto w-4 ">
+              <button onClick={toggleCart} className="sm:mr-6 mr-6 sm:w-auto w-4 ">
                 <img src={Cart} alt='menu' />
               </button>
-              <button onClick={toggleCart} className=' transition duration-500 ease-in' >
+              <button className=' transition duration-500 ease-in' >
                 <img
                   src={Image}
                   alt="Profile"
-                  onClick={handleImageClick}
-                  className={`w-5 h-5 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-cover cursor-pointer
-                  ${selectedImage ? 'border-orange border-2' : ''}
-                  `}
-                />
+                  className='w-5 h-5 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-cover cursor-pointer hover:border-orange hover:border-2' />
               </button>
             </div>
           </div>
         </div>
       </header>
-      {isCartOpen && <Carts />}
+
+
+      {isCartOpen && <Carts cartItems={cartItems} setCartItems={setCartItems} />}
+      {/* Render ProductPage and pass setCartItems function as a prop */}
+      <div className='hidden sm:flex items-center justify-center md:py-20 sm:py-12 gap-8 lg:gap-20 xl:gap-40 sm:mx-4 md:mx-8'>
+        <ProductImage />
+        <ProductPage setCartItems={setCartItems} />
+      </div>
+      <div className='block sm:hidden'>
+        <ImageSlider />
+        <ProductPage setCartItems={setCartItems} />
+      </div>
+
     </>
   );
 };

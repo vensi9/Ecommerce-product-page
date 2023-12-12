@@ -5,11 +5,14 @@ import Product2 from '../../images/image-product-2.jpg'
 import Product3 from '../../images/image-product-3.jpg'
 import Product4 from '../../images/image-product-4.jpg'
 import Lightbox from "yet-another-react-lightbox";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export const ProductImage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [open, setOpen] = useState(false);
+
   const images = [
     { src: Product1, alt: 'Product1' },
     { src: Product2, alt: 'Product2' },
@@ -18,14 +21,14 @@ export const ProductImage = () => {
   ];
   const customStyles = {
     slide: {
-      maxWidth: '400px', 
-      maxHeight: '500px',  
-      objectFit: 'contain',  
+      maxWidth: '400px',
+      maxHeight: '500px',
+      objectFit: 'contain',
       margin: '0 3rem',
+      borderRadius: '10px',
     },
-
-
   };
+
   return (
     <div className='lg:w-96 sm:w-80 sm:relative absolute sm:top-0 top-14 hidden sm:block '>
       <div className='grid'>
@@ -43,7 +46,7 @@ export const ProductImage = () => {
                 alt={image.alt}
                 className={
                   `rounded-xl cursor-pointer hover:opacity-50 
-                  ${selectedImage === index ? 'border-2 border-orange opacity-50' : '' }`
+                  ${selectedImage === index ? 'border-2 border-orange opacity-50' : ''}`
                 }
                 onClick={() => setSelectedImage(index)}
               />
@@ -56,6 +59,7 @@ export const ProductImage = () => {
           slides={images}
           styles={customStyles}
           currentSlide={selectedImage}
+          plugins={[Thumbnails]}
         />
       </div>
     </div>

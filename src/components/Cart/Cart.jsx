@@ -1,13 +1,22 @@
 // for displaying the cart.
-import React, { useState } from 'react'
+import React from 'react'
 import Image from "../../images/image-product-1-thumbnail.jpg"
 import Delete from "../../images/icons/icon-delete.svg"
 
-export const Carts = () => {
-  const [cartItems, setCartItems] = useState(true);
-  const toggleCartItems = () => {
-    setCartItems(!cartItems)
-  }
+export const Carts = ({ cartItems = [], setCartItems }) => {
+  // const [cartItems, setCartItems] = useState(true);
+  // const toggleCartItems = () => {
+  //   setCartItem(!cartItem)
+  // }
+
+  // const handleDeleteItem = (index) => {
+  //   const updatedItems = cartItems.filter((item, i) => i !== index);
+  //   setCartItems(updatedItems);
+  // };
+
+  const handleRemove = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
 
   return (
     <div className='w-[95vw] sm:w-96 rounded-lg left-1/2 sm:left-[70%] xl:left-[80%] 2xl:left-[75%] transform -translate-x-1/2 z-20 container mt-2  sm:mt-0  absolute top-18 lg:top-28  bg-white shadow-lg  shadow-grayish-blue'>
@@ -16,33 +25,35 @@ export const Carts = () => {
           <h1 className='pl-8 text-black font-700'>Cart</h1>
         </div>
 
-        {cartItems ? (
+        {cartItems.length > 0 ? (
           <div className='justify-center flex items-center h-56'>
             <div className='flex flex-col gap-6'>
-              <div className='flex items-center'>
-                <img src={Image}
-                  className=' w-12 rounded-md'
-                  alt="Shoes"
-                />
-                <div className='text-18 ml-4 font-400 text-dark-grayish-blue'>
-                  <h1>
-                    Fall Limited Edition Sneakers
-                  </h1>
-                  <h1>
-                    <span>$125.00</span> x
-                    <span> 3 </span>
-                    <b className='text-very-dark-blue'>$375.00</b>
-                  </h1>
-                </div>
-                <div>
-                  <img
-                    className='ml-4 cursor-pointer'
-                    src={Delete}
-                    alt="Delete-Icon"
-                    onClick={toggleCartItems}
+              {cartItems.map((item) => (
+                <div key={item} className='flex items-center'>
+                  <img src={Image}
+                    className=' w-12 rounded-md'
+                    alt="Shoes"
                   />
+                  <div className='text-18 ml-4 font-400 text-dark-grayish-blue'>
+                    <h1>
+                      Fall Limited Edition Sneakers
+                    </h1>
+                    <h1>
+                      <span>${item.price.toFixed(2)}</span> x
+                      <span> {item.quantity}</span>
+                      <b className='text-very-dark-blue'> ${(item.price * item.quantity).toFixed(2)}</b>
+                    </h1>
+                  </div>
+                  <div>
+                    <img
+                      className='ml-4 cursor-pointer'
+                      src={Delete}
+                      alt="Delete-Icon"
+                      onClick={() => handleRemove(item)}
+                    />
+                  </div>
                 </div>
-              </div>
+              ))}
               <button className=' font-700 text-white px-28 py-4 bg-orange hover:opacity-50 rounded-xl' type='submit'>Checkout</button>
             </div>
           </div>
