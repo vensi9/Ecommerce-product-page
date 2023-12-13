@@ -1,18 +1,8 @@
-// for displaying the cart.
 import React from 'react'
 import Image from "../../images/image-product-1-thumbnail.jpg"
 import Delete from "../../images/icons/icon-delete.svg"
 
 export const Carts = ({ cartItems = [], setCartItems }) => {
-  // const [cartItems, setCartItems] = useState(true);
-  // const toggleCartItems = () => {
-  //   setCartItem(!cartItem)
-  // }
-
-  // const handleDeleteItem = (index) => {
-  //   const updatedItems = cartItems.filter((item, i) => i !== index);
-  //   setCartItems(updatedItems);
-  // };
 
   const handleRemove = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -28,20 +18,20 @@ export const Carts = ({ cartItems = [], setCartItems }) => {
         {cartItems.length > 0 ? (
           <div className='justify-center flex items-center h-56'>
             <div className='flex flex-col gap-6'>
-              {cartItems.map((item) => (
-                <div key={item} className='flex items-center'>
+              {cartItems.map((item, index) => (
+                <div key={index} className='flex items-center'>
                   <img src={Image}
                     className=' w-12 rounded-md'
                     alt="Shoes"
                   />
                   <div className='text-18 ml-4 font-400 text-dark-grayish-blue'>
                     <h1>
-                      Fall Limited Edition Sneakers
+                    {item.name}
                     </h1>
                     <h1>
                       <span>${item.price.toFixed(2)}</span> x
                       <span> {item.quantity}</span>
-                      <b className='text-very-dark-blue'> ${(item.price * item.quantity).toFixed(2)}</b>
+                      <b className='text-very-dark-blue'> ${(item.totalPrice).toFixed(2)}</b>
                     </h1>
                   </div>
                   <div>
@@ -49,7 +39,7 @@ export const Carts = ({ cartItems = [], setCartItems }) => {
                       className='ml-4 cursor-pointer'
                       src={Delete}
                       alt="Delete-Icon"
-                      onClick={() => handleRemove(item)}
+                      onClick={() => handleRemove()}
                     />
                   </div>
                 </div>

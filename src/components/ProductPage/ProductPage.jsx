@@ -1,10 +1,9 @@
-//  Main component for the product page.
 import React, { useState } from 'react'
 import CartIcon from '../../images/icons/icon-cart.svg'
 import Plus from '../../images/icons/icon-plus.svg'
 import Minus from '../../images/icons/icon-minus.svg'
 
-export const ProductPage = ({ setCartItems }) => {
+export const ProductPage = ({cartItems=[], setCartItems }) => {
   const [quantity, setQuantity] = useState(0);
 
   const handleIncrement = () => {
@@ -16,18 +15,33 @@ export const ProductPage = ({ setCartItems }) => {
       setQuantity(quantity - 1)
     }
   }
+  const productDetails = {
+    name: 'Fall Limited Edition Sneakers',
+    price: 125.00,
+  };
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      const newItem = {
-        price: 125.00,
-        quantity: quantity,
-      };
-      setCartItems((prevItems) => [...prevItems, newItem]);
+      const existingCartItemIndex = cartItems.findIndex(item => item.id === productDetails.id);
+  
+      if (existingCartItemIndex !== -1) {
+        const updatedCartItems = [...cartItems];
+        updatedCartItems[existingCartItemIndex].quantity += quantity;
+        updatedCartItems[existingCartItemIndex].totalPrice += productDetails.price * quantity;
+        setCartItems(updatedCartItems);
+      } else {
+        const newItem = {
+          ...productDetails,
+          quantity: quantity,
+          totalPrice: productDetails.price * quantity,
+        };
+        setCartItems([...cartItems, newItem]);
+      }
+  
       setQuantity(0);
     }
   };
-
+  
   return (
     <div className=' mx-5 sm:mx-0 sm:w-[42vw] md:w-[50vw] lg:w-[40vw] xl:w-[34vw] mt-3 sm:mt-0 '>
       <h3 className='text-orange text-10 sm:text-12 lg:text-14 font-700 tracking-[1.2px]'>SNEAKERS COMPANY</h3>

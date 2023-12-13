@@ -5,6 +5,7 @@ import Menu from "../../images/icons/icon-menu.svg"
 import CloseIcon from "../../images/icons/icon-close.svg"
 import Cart from "../../images/icons/icon-cart.svg"
 import ImageSlider from '../ProductPage/ResponsiveImage';
+import CartCounter from '../Cart/CartItem';
 import { Carts } from '../Cart/cart';
 import { ProductPage } from '../ProductPage/ProductPage';
 import { ProductImage } from '../ProductPage/ProductImage';
@@ -13,7 +14,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [activeLink, setActiveLink] = useState(""); // State to track active link
 
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -50,7 +55,15 @@ const Navbar = () => {
               {users.map((user) => {
                 return <ul className="hidden sm:flex text-14 lg:text-16 font-400 text-dark-grayish-blue">
                   <li className='ml-5 md:ml-8 lg:ml-10 '>
-                    <a href="#" className="hover:text-very-dark-blue hover:border-orange hover:border-b-[3px] sm:hover:pb-[25px] lg:hover:pb-[43px]">{user.links}</a>
+                    <a
+                      href="#"
+                      className={`transition-all duration-300 hover:text-very-dark-blue 
+                      ${activeLink === user.links ? 'border-orange border-b-[3px] pb-[25px] lg:pb-[43px] text-very-dark-blue' : ''}
+                      `}
+                      onClick={() => handleLinkClick(user.links)} // Handle link click
+                    >
+                      {user.links}
+                    </a>
                   </li>
                 </ul>
               })}
@@ -59,7 +72,7 @@ const Navbar = () => {
                 <div className="fixed inset-0 bg-grayish-blue bg-opacity-75 z-50 transition ease-in delay-300">
                   <div className="absolute top-0 left-0 h-full bg-white w-52 shadow-lg transition ease-in delay-150">
                     <div className="flex justify-between items-center px-4 py-4">
-                      <button onClick={toggleMenu}>
+                      <button onClick={toggleMenu} className=''>
                         <img src={CloseIcon} alt="close" className="w-3" />
                       </button>
                     </div>
@@ -79,10 +92,11 @@ const Navbar = () => {
 
             {/* Right side */}
             <div className="flex items-center font-larger">
-              <button onClick={toggleCart} className="sm:mr-6 mr-6 sm:w-auto w-4 ">
+              <button onClick={toggleCart} className="sm:mr-6 mr-6 sm:w-auto w-4 flex  relative">
+                {cartItems.length > 0 && <CartCounter cartItems={cartItems} />}
                 <img src={Cart} alt='menu' />
               </button>
-              <button className=' transition duration-500 ease-in' >
+              <button>
                 <img
                   src={Image}
                   alt="Profile"
@@ -93,8 +107,8 @@ const Navbar = () => {
         </div>
       </header>
 
-
       {isCartOpen && <Carts cartItems={cartItems} setCartItems={setCartItems} />}
+
       {/* Render ProductPage and pass setCartItems function as a prop */}
       <div className='hidden sm:flex items-center justify-center md:py-20 sm:py-12 gap-8 lg:gap-20 xl:gap-40 sm:mx-4 md:mx-8'>
         <ProductImage />

@@ -1,13 +1,13 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import React from 'react'
 import Product1 from "../../images/image-product-1.jpg"
 import Product2 from "../../images/image-product-2.jpg"
 import Product3 from "../../images/image-product-3.jpg"
 import Product4 from "../../images/image-product-4.jpg"
-import ArrowLeftIcon from '../../images/icons/icon-previous.svg';  
-import ArrowRightIcon from '../../images/icons/icon-next.svg'; 
+import ArrowLeftIcon from '../../images/icons/icon-previous.svg';
+import ArrowRightIcon from '../../images/icons/icon-next.svg';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function SampleNextArrow(props) {
     const { onClick } = props;
@@ -31,33 +31,18 @@ function SamplePrevArrow(props) {
                 src={ArrowRightIcon}
                 onClick={onClick}
                 alt="left"
-                className="absolute z-10 transform translate-x-10 translate-y-[105px] right-14 py-[6px] px-[9px] rounded-full bg-white"
+                className="absolute z-10 transform translate-x-10 translate-y-[125px] right-14 py-[6px] px-[9px] rounded-full bg-white"
             />
         </div>
     );
 }
 
 const ImageSlider = () => {
-    const images = [{
-        id: 1,
-        src: `${Product1}`,
-        alt: "Image 1"
-    },
-    {
-        id: 2,
-        src: `${Product2}`,
-        alt: "Image 2 "
-    },
-    {
-        id: 3,
-        src: `${Product3}`,
-        alt: "Image 3"
-    },
-    {
-        id: 4,
-        src: `${Product4}`,
-        alt: "Image 3"
-    }
+    const images = [
+        { src: Product1, alt: 'Product1' },
+        { src: Product2, alt: 'Product2' },
+        { src: Product3, alt: 'Product3' },
+        { src: Product4, alt: 'Product4' },
     ];
 
     const settings = {
@@ -70,10 +55,13 @@ const ImageSlider = () => {
     return (
         <>
             <div className="block sm:hidden h-auto">
-                <Slider {...settings} >
+                <Slider {...settings}>
                     {images.map((item) => (
-                        <div key={item.id} className="w-full">
-                            <img className='h-[45vh]  w-full object-cover' src={item.src} alt={item.alt} />
+                        <div key={item.id}>
+                            <img className='sm:rounded-xl h-[50vh] sm:h-auto w-full object-cover cursor-pointer'
+                                src={item.src}
+                                alt={item.alt}
+                            />
                         </div>
                     ))}
                 </Slider>
