@@ -5,8 +5,8 @@ import Menu from "../../images/icons/icon-menu.svg"
 import CloseIcon from "../../images/icons/icon-close.svg"
 import Cart from "../../images/icons/icon-cart.svg"
 import ImageSlider from '../ProductPage/ResponsiveImage';
-import CartCounter from '../Cart/CartItem';
-import { Carts } from '../Cart/cart';
+import CartCounter from '../CartContent/CartItem';
+import { Carts } from '../CartContent/cart';
 import { ProductPage } from '../ProductPage/ProductPage';
 import { ProductImage } from '../ProductPage/ProductImage';
 

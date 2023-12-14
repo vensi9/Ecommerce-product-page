@@ -1,8 +1,8 @@
-# E-commerce product page
+# E-commerce-product-page
 
 ## Table of contents
 
-- [E-commerce product page](#e-commerce-product-page)
+- [E-commerce-product-page](#e-commerce-product-page)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [The challenge](#the-challenge)
