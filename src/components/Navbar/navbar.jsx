@@ -37,9 +37,9 @@ const Navbar = () => {
   return (
     <>
       <header>
-        <div className="container mx-auto px-6 md:px-10 lg:px-24 flex justify-between items-center">
+        <div className="sm:container sm:mx-auto px-6 md:px-10 lg:px-24 flex justify-between items-center">
           {/* Left side */}
-          <div className='container sm:border-b-[1px] py-4 lg:py-8 sm:border-grayish-blue flex justify-between'>
+          <div className='sm:container w-full sm:border-b-[1px] py-4 lg:py-8 sm:border-grayish-blue flex justify-between'>
             <div className="flex items-center">
               {/* Hamburger menu for mobile */}
               <div className="sm:hidden">

@@ -70,7 +70,7 @@ export const LightBoxGallery = ({ setLightBox }) => {
       <article className=' overflow-hidden hidden sm:flex flex-col justify-center z-50 bg-opacity-75 bg-black fixed top-0 left-0 bottom-0 right-0'>
         <div className='container mx-auto lg:w-96 sm:w-80'>
           <div className='top-0'>
-            <button className="transition duration-300 ease-in-out transform hover:text-orange-500 hover:scale-110 hover:brightness-75  left-[19rem] lg:left-[23rem] filter brightness-0 invert  bottom-1 relative" onClick={handleClose}>
+            <button className="transition duration-300 ease-in-out transform hover:text-orange-500 hover:scale-110 hover:brightness-75  left-[19rem] lg:left-[23rem] filter brightness-0 invert  bottom-2 relative" onClick={handleClose}>
               <img src={Close} alt="close"  />
             </button>
             <Slider {...settings}>
@@ -86,22 +86,6 @@ export const LightBoxGallery = ({ setLightBox }) => {
               ))}
             </Slider>
           </div>
-        </div>
-
-        {/* Thumbnail */}
-        <div className='container mx-auto lg:w-96 sm:w-80 pt-4 gap-5   hidden sm:flex justify-between items-center'>
-          {images.map((image, index) => (
-            <div key={index}>
-              <img
-                src={image.src}
-                alt={image.alt}
-                className={
-                  `rounded-xl cursor-pointer ${selectedImageIndex === index ? 'border-2 border-orange' : ''
-                  }`}
-                onClick={() => setSelectedImageIndex(index)}
-              />
-            </div>
-          ))}
         </div>
       </article>
     </>
